@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d62df86966504277b92bb929cf3bead6" Name="Diagram1">
+        <EntityTypeShape EntityType="ABCBankingModel.BankAccount" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCBankingModel.ChequeingAccount" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCBankingModel.SavingsAccount" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCBankingModel.User" Width="1.5" PointX="3.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCBankingModel.UserAccount" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCBankingModel.UserRole" Width="1.5" PointX="1.5" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="ABCBankingModel.FK_ChequeingAccount_BankAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="ABCBankingModel.FK_SavingsAccount_BankAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="ABCBankingModel.FK_UserAccounts_BankAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="ABCBankingModel.FK_User_UserRole" ManuallyRouted="false" />
+        <AssociationConnector Association="ABCBankingModel.FK_UserAccounts_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ABCBankingModel.Bill" Width="1.5" PointX="6" PointY="1.5" />
+        <EntityTypeShape EntityType="ABCBankingModel.BillType" Width="1.5" PointX="3.75" PointY="0.75" />
+        <AssociationConnector Association="ABCBankingModel.FK_Bill_BankAccount" />
+        <AssociationConnector Association="ABCBankingModel.FK_Bill_BillType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "BillsPage";
+}
+
+<br />
+<br />
+<h2>@ViewBag.CustomerName Account Settings</h2>
+<hr />
+<br />
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var m in ViewBag.Bills)
+        {
+            if (@m.BillType == 1)
+            {
+                <div class="col-md-6">
+                    <h3>Utility Bill</h3>
+                    <p>Balance Owing: @m.BalanceOwing</p>
+                    @Html.ActionLink("Pay Bill", "PayBill", "Bill", null, new { @class = "btn btn-primary" })
+                </div>
+            }
+
+            if (@m.BillType == 2)
+            {
+                <div class="col-md-6">
+                    <h3>Hydro Bill</h3>
+                    <p>Balance Owing: @m.BalanceOwing</p>
+                    @Html.ActionLink("Pay Bill", "PayBill", "Bill", null, new { @class = "btn btn-primary" })
+                </div>
+            }
+        }
+    </div>
+</div>

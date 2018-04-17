@@ -1,0 +1,147 @@
+﻿@model ABCBankingApplication.Models.User
+@{
+    ViewBag.Title = "AccountSettingsPage";
+    var customer = ViewBag.Customer;
+}
+
+<br />
+<br />
+<h2>@ViewBag.CustomerName Account Settings</h2>
+<hr />
+<br />
+<br />
+
+<div id="settings" class="container-fluid">
+    <div id="chequeSuccess" class="alert alert-success alert-dismissible" style="display: none;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Your Cheque Book has been ordered and is on it's way.
+    </div>
+    <div id="paySuccess" class="alert alert-success alert-dismissible" style="display: none;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Your Pay In Book has been ordered and is on it's way.
+    </div>
+
+    @if (ViewBag.PwSuccess == true && ViewBag.PwSuccess != null)
+    {
+        <div id="alertSuccessMsg" class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> Password changed successfully.
+        </div>
+    }
+    else if (ViewBag.PwSuccess == false && ViewBag.PwSuccess != null)
+    {
+        <div id="alertMsg" class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Failed!</strong> Passwords do not match. Please try again.
+        </div>
+    }
+
+    @if (ViewBag.AddressChanged == true && ViewBag.PwSuccess != null)
+    {
+        <div id="alertSuccessMsg" class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> Address updated successfully
+        </div>
+    }
+    @if (ViewBag.WrongPw == true && ViewBag.WrongPw != null)
+    {
+        <div id="alertMsg" class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Failed!</strong> You entered an invalid existing password. Please try again.
+        </div>
+    }
+
+    @if (ViewBag.Activated == true)
+    {
+        <div id="alertSuccessMsg" class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> Your Debit/Credit Card has been activated.
+        </div>
+    }
+
+    <h2>First Name:      <span class="label label-pill label-default">@customer.FirstName</span></h2>
+    <h2>Last Name:       <span class="label label-default">@customer.LastName</span></h2>
+    <h2>Address:         <span class="label label-default">@customer.Address</span></h2>
+    <h2>Date of Birth:   <span class="label label-default">@customer.DOB</span></h2>
+    <h2>Email:           <span class="label label-default">@customer.Email</span></h2>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <p><b>Activate Your Credit or Debit Card</b></p>
+            <a id="activate" class="btn btn-primary" href="#">Activate Debit/Credit Card</a>
+        </div>
+
+        <div class="col-md-6">
+            <p><b>Change Your Address</b></p>
+            <a id="changeAdd" class="btn btn-primary" href="#">Change Address</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <p><b>Order a New Cheque Book</b></p>
+            <small>*The cheque book will be delivered to the address on file</small><br />
+            <a id="orderCheque" class="btn btn-primary" href="#">Order New Cheque Book</a>
+        </div>
+        <div class="col-md-6">
+            <p><b>Change Your Password</b></p>
+            <a id="changePw" class="btn btn-primary" href="#">Change Password</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <p><b>Order a New Pay In Book</b></p>
+            <small>*The pay in will be delivered to the address on file</small><br />
+            <a id="orderPayin" class="btn btn-primary" href="#">Order New Payin Book</a>
+        </div>
+
+    </div>
+</div>
+<div id="changePassword" style="display: none;"></div>
+<div id="changeAddress" style="display: none;"></div>
+<div id="activateCard" style="display: none;"></div>
+@section Scripts {
+    <script>
+        $("#activate").click(function () {
+            $('#settings').css({ "display": "none" });
+            $('#activateCard').css({ "display": "block" });
+            $('#activateCard').load('@Url.Action("ActivatePartial", "AccountSettings")');
+        });
+        $("#changeAdd").click(function () {
+            $('#settings').css({ "display": "none" });
+            $('#changeAddress').css({ "display": "block" });
+            $('#changeAddress').load('@Url.Action("ChangeAddressPartial", "AccountSettings")');
+        });
+        $("#changePw").click(function () {
+            $('#settings').css({ "display": "none" });
+            $('#changePassword').css({ "display": "block" });
+            $('#changePassword').load('@Url.Action("ChangePasswordPartial", "AccountSettings")');
+        });
+
+        $("#orderCheque").click(function showAlert() {
+            $("#chequeSuccess").css({ "display": "block" });
+            $("#chequeSuccess").fadeTo(2000, 500).slideUp(500, function () {
+                $("#chequeSuccess").slideUp(500);
+            });
+        });
+
+        $("#orderPayin").click(function showAlert() {
+            $("#paySuccess").css({ "display": "block" });
+            $("#paySuccess").fadeTo(2000, 500).slideUp(500, function () {
+                $("#paySuccess").slideUp(500);
+            });
+        });
+
+
+        $("#alertMsg").fadeTo(2000, 500).slideUp(500, function () {
+            $("#alertMsg").slideUp(500);
+        });
+
+        $("#alertSuccessMsg").fadeTo(2000, 500).slideUp(500, function () {
+            $("#alertSuccessMsg").slideUp(500);
+        });
+    </script>
+}

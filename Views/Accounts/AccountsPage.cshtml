@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Accounts Page";
+    var viewModel = ViewBag.Accounts;
+}
+
+<br />
+<br />
+<h2>@viewModel.CustomerName Accounts Page</h2>
+<hr />
+<br />
+<br />
+<div class="container-fluid">
+    <div id="acctBtns" class="row">
+        <div class="col-md-6">
+            <a id="chequeingBtn" class="btn btn-primary" href="#">Create New Chequeing Account</a>
+        </div>
+        <div class="col-md-6">
+            <a id="savingsBtn" class="btn btn-primary" href="#">Create New Savings Account</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div id="createCheque" style="display: none">
+        @{
+            Html.RenderAction("CreateChequeingPartial");
+        }
+    </div>
+
+    <div id="createSavings" style="display: none">
+        @{
+            Html.RenderAction("CreateSavingsPartial");
+        }
+    </div>
+    <div id="accountsList" class="row">
+
+        <div id="chqAccts" class="col-md-6">
+            <h3>Your Chequeing Accounts</h3>
+            <br />
+            @foreach (var mod in viewModel.ChequeingAccts)
+            {
+
+                <div class="col-md-6">
+                    <p>Account Number: @mod.account_number</p>
+                    <p>Balance: @mod.BankAccount.balance</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.ActionLink("View Statement", "ViewStatement", "Accounts", new { accountId = @mod.account_id }, new { @class = "btn btn-primary" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.ActionLink("Transfer Funds", "Transfer", "Accounts", new { accountId = @mod.account_id }, new { @class = "btn btn-success" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <h3>Your Savings Accounts</h3>
+            <br />
+            @foreach (var mod in viewModel.SavingsAccts)
+            {
+
+                <div class="col-md-6">
+                    <p>Account Number: @mod.account_number</p>
+                    <p>Balance: @mod.BankAccount.balance</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.ActionLink("View Statement", "ViewStatement", "Accounts", new { accountId = @mod.account_id }, new { @class = "btn btn-primary" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.ActionLink("Transfer Funds", "Transfer", "Accounts", new { accountId = @mod.account_id }, new { @class = "btn btn-success" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $('#chequeingBtn').click(function () {
+            $('#accountsList').css({ "display": "none" });
+            $('#createSavings').css({ "display": "none" });
+            $('#acctBtns').css({ "display": "none" });
+            $('#createCheque').css({ "display": "block" });
+            $('#createCheque').load('@Url.Action("CreateChequeingPartial", "Accounts")');
+        });
+
+        $('#savingsBtn').click(function () {
+            $('#accountsList').css({ "display": "none" });
+            $('#createCheque').css({ "display": "none" });
+            $('#acctBtns').css({ "display": "none" });
+            $('#createSavings').css({ "display": "block" });
+            $('#createSavings').load('@Url.Action("CreateSavingsPartial", "Accounts")');
+        });
+    </script>
+
+}

@@ -1,0 +1,30 @@
+﻿@model ABCBankingApplication.Models.ViewModels.ActivateCardViewModel
+<div class="row">
+    <div id="alertMsg" class="alert alert-danger alert-dismissible" style="display: none;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> Passwords do not match. Please try again.
+    </div>
+    <div id="alertSuccessMsg" class="alert alert-success alert-dismissible" style="display: none;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Passwords do not match. Please try again.
+    </div>
+
+    <section>
+        @using (Html.BeginForm("ActivateCard", "AccountSettings", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <h2>Activate Your Credit/Debit Card</h2>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(m => m.CardNumber, new { @class = "col-md-2 control-label" })
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.CardNumber, new { @class = "form-control", id = "cardNum", required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="Activate" class="btn btn-primary" />
+                </div>
+            </div>
+        }
+    </section>
+</div>

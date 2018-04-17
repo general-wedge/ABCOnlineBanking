@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ABC Online Banking</h1>
+    <p class="lead">Secure, Fast, Reliable Banking</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div id="greeting" class="col-md-12">
+        @{
+            if(ViewBag.Failed == null && ViewBag.Login == null)
+            {
+                Html.RenderPartial("_Greeting");
+            }
+        }
+    </div>
+    <div id="register" class="col-md-12"></div>
+    <div id="login" class="col-md-12">
+        @if (ViewBag.Failed != null)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Failed!</strong> @ViewBag.Failed
+            </div>
+            Html.RenderAction("Login");
+        }
+
+        @if (ViewBag.Login != null)
+        {
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> @ViewBag.Login
+            </div>
+            Html.RenderAction("Login");
+        }
+    </div>
+</div>
+@section Scripts {
+<script>
+    $('#loginBtn').click(function () {
+        $('#greeting').css({ "display": "none" });
+        $('#register').css({ "display": "none" });
+        $('#login').css({ "display": "block" });
+        $('#login').load('@Url.Action("Login", "Home")');
+    });
+
+    $('#registerBtn').click(function () {
+        $('#greeting').css({ "display": "none" });
+        $('#login').css({ "display": "none" });
+        $('#register').css({ "display": "block" });
+        $('#register').load('@Url.Action("Register", "Home")');
+    });
+</script>
+}
