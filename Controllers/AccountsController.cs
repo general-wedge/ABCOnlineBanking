@@ -70,7 +70,7 @@ namespace ABCBankingApplication.Controllers
                 // Add Bank Account Object to the DB
                 db.BankAccounts.Add(stuAccount);
                 db.SaveChanges();
-                int bankAcctId = stuAccount.account_id; // Get the ID of the enwly created Bank Account
+                int bankAcctId = stuAccount.account_id; // Get the ID of the newly created Bank Account
 
                 // Add Chequeing Account to DB and assign it the newly created Bank Account Id
                 stuChequeAccount.account_id = bankAcctId;

@@ -313,11 +313,14 @@
     <Content Include="Views\Accounts\_CreateChequeing.cshtml" />
     <Content Include="Views\Accounts\_CreateSavings.cshtml" />
     <Content Include="Views\AccountSettings\AccountSettingsPage.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Bill\BillsPage.cshtml" />
     <Content Include="Views\AccountSettings\_ActivateCard.cshtml" />
     <Content Include="Views\AccountSettings\_ChangePassword.cshtml" />
     <Content Include="Views\AccountSettings\_ChangeAddress.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

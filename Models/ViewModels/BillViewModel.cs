@@ -7,6 +7,7 @@ namespace ABCBankingApplication.Models.ViewModels
 {
     public class BillViewModel
     {
+        public int BillId { get; set; }
         public double BalanceOwing { get; set; }
         public double Payment { get; set; }
         public int BillType { get; set; }

@@ -2,5 +2,79 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<br />
+<h2>Admin - Manage Users</h2>
+<hr />
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+</p>
+<div class="container" style="width: 100%;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayName("Account Number")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Password")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Email")
+                            </th>
+                            <th>
+                                @Html.DisplayName("First Name")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Last Name")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Date of Birth")
+                            </th>
+                            <th>
+                                @Html.DisplayName("User Role")
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.Users) {
+                            <tr>
+                                <td>
+                                    @item.account_number
+                                </td>
+                                <td>
+                                    @item.password
+                                </td>
+                                <td>
+                                    @item.email
+                                </td>
+                                <td>
+                                   @item.first_name
+                                </td>
+                                <td>
+                                    @item.last_name
+                                </td>
+                                <td>
+                                    @item.date_of_birth
+                                </td>
+                                <td>
+                                    @item.UserRole.user_role_name
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id=item.user_id }, new { @class = "btn btn-primary" }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id=item.user_id }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
